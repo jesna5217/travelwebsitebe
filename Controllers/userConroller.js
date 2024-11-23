@@ -34,7 +34,7 @@ exports.register=async(req,res)=>{
     
 }
 exports.login=async(req,res)=>{
-    console.log("inside login controller");
+   
     
     const {email,password}=req.body;
 try{

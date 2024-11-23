@@ -5,9 +5,10 @@ const jwt=require('jsonwebtoken')
  exports.addReviews=async(req,res)=>{
 
     const userId=req.payload;
-    console.log("userId",userId);
+   console.log("hii review");
+   
     const image=req.file.filename;
-    console.log(image);
+    
     const {userName,tourRating,reviewText,tourId}=req.body;
     try{
 const newReview=new reviews({
@@ -46,7 +47,7 @@ res.status(200).json(review)
 
 exports.getAllReview=async(req,res)=>{
 try{
-  const allReview=await reviews.find().limit(10);
+  const allReview=await reviews.find();
   res.status(200).json(allReview)
 }
 catch(err){

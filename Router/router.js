@@ -29,6 +29,7 @@ router.get('/getreview/:id',reviewController.getReviewById);
 // router.put('/uploadimage/:id',jwtMiddleware,multerConfig.single('profile'),userController.updateProfileImage);
 router.get('/user/details/:id',userController.getUserById)
 router.get('/allreview',reviewController.getAllReview)
-router.put('/uploadimage/:id',jwtMiddleware,multerConfig.single('profile'),userController.updateProfile)
+router.put('/uploadimage/:id',jwtMiddleware,multerConfig.single('profile'),userController.updateProfile);
+router.get('/tour/searchtour',tourController.getSearchTour)
 //Export router
 module.exports=router;

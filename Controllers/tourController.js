@@ -99,7 +99,7 @@ console.log(tourId);
 
 
 exports.deleteTour=async(req,res)=>{
-    console.log("inside delete tour");
+  
     
     const {id}=req.params;
     console.log(id);
@@ -112,4 +112,34 @@ res.status(200).json(removedTour);
         res.status(401).json(err)
     }
 }
+
+
+
+exports.getSearchTour=async(req,res)=>{
  
+const {location,fromDate,toDate,people}=req.query;
+console.log(fromDate);
+const calculateDays = (from, to) => {
+    const startDate = new Date(from);
+    const endDate = new Date(to);
+    const timeDifference = endDate - startDate; // Difference in milliseconds
+    const dayDifference = timeDifference / (1000 * 3600 * 24); // Convert milliseconds to days
+    return dayDifference;
+};
+const days = (calculateDays(fromDate, toDate))+1;
+console.log(days);
+
+   try{
+    const searchtour=await tours.find({title:location,days:days,maxGroupSize:{ $gte: people }})
+
+console.log(searchtour);
+res.status(200).send(searchtour)
+   }
+     
+ catch (err) {
+    console.error('Error fetching tours:', err);
+    res.status(500).json({ message: 'Internal Server Error' });
+ }
+
+   
+}
